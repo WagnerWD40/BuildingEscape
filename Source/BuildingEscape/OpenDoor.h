@@ -17,6 +17,7 @@ public:
 	UOpenDoor();
 	void OpenDoor(float DeltaTime);
 	void CloseDoor(float DeltaTime);
+	float TotalMassOfActors() const;
 
 protected:
 	// Called when the game starts
@@ -47,5 +48,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float DoorCloseSpeed = 4.5f;
+
+	UPROPERTY(EditAnywhere)
+	float MassToOpenDoors = 50.0f;
 
 };
