@@ -40,8 +40,8 @@ void UOpenDoor::BeginPlay()
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	if (TotalMassOfActors() > MassToOpenDoors)
+	
+	if (TotalMassOfActors() < MassToOpenDoors)
 	{
 		OpenDoor(DeltaTime);
 		DoorLastOpened = GetWorld()->GetTimeSeconds();
@@ -53,7 +53,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 			CloseDoor(DeltaTime);	
 		}
 	}
-	// UE_LOG(LogTemp, Error, TEXT("%f"), 50.0f);	
+
 }
 
 void UOpenDoor::OpenDoor(float DeltaTime)
@@ -76,6 +76,7 @@ void UOpenDoor::CloseDoor(float DeltaTime)
 
 float UOpenDoor::TotalMassOfActors() const
 {
+	
 	float TotalMass = 0.0f;
 	TArray<AActor*> OverlappingActors;
 
@@ -84,7 +85,10 @@ float UOpenDoor::TotalMassOfActors() const
 	for (AActor* Actor : OverlappingActors)
 	{
 		TotalMass += Actor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
+		
 	}
+	UE_LOG(LogTemp, Error, TEXT("OverlappingActors length %i"), OverlappingActors.Num());
+	UE_LOG(LogTemp, Error, TEXT("TotalMass is %f"), TotalMass);
 	
 	return TotalMass;
 }
