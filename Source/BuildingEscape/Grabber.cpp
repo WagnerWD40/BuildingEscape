@@ -44,16 +44,16 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 FHitResult UGrabber::GetFirstPhysicsBodyInReach() const
 {
 	// Draw a line from the player showing the reach.
-	DrawDebugLine(
-		GetWorld(),
-		GetPlayersWorldPos(),
-		GetPlayersReach(),
-		FColor(0, 255, 0),
-		false,
-		0.f,
-		0,
-		5.f
-	);
+	// DrawDebugLine(
+	// 	GetWorld(),
+	// 	GetPlayersWorldPos(),
+	// 	GetPlayersReach(),
+	// 	FColor(0, 255, 0),
+	// 	false,
+	// 	0.f,
+	// 	0,
+	// 	5.f
+	// );
 
 	FHitResult Hit;
 	// Ray-cast out to a certain distance (Reach)
